@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="databaseEntitiesStoreContainer" CdmEntityContainer="project2Entities">
+    <EntitySetMapping Name="resource_attribute_values">
+      <EntityTypeMapping TypeName="databaseEntities.resource_attribute_values">
+        <MappingFragment StoreEntitySet="resource_attribute_values">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="attribute_id" ColumnName="attribute_id" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="resource_attributesId" ColumnName="resource_attributesId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="resource_attributes">
+      <EntityTypeMapping TypeName="databaseEntities.resource_attributes">
+        <MappingFragment StoreEntitySet="resource_attributes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="attribute" ColumnName="attribute" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="resource_eav">
+      <EntityTypeMapping TypeName="databaseEntities.resource_eav">
+        <MappingFragment StoreEntitySet="resource_eav">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="resource_id" ColumnName="resource_id" />
+          <ScalarProperty Name="attribute_id" ColumnName="attribute_id" />
+          <ScalarProperty Name="value_id" ColumnName="value_id" />
+          <ScalarProperty Name="resource_attribute_valuesId" ColumnName="resource_attribute_valuesId" />
+          <ScalarProperty Name="resourceId" ColumnName="resourceId" />
+          <ScalarProperty Name="resource_attributes_Id" ColumnName="resource_attributes_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="resources">
+      <EntityTypeMapping TypeName="databaseEntities.resource">
+        <MappingFragment StoreEntitySet="resources">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="fullpath" ColumnName="fullpath" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

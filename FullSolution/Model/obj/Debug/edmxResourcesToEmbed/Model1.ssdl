@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="databaseEntities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="resource_attribute_values">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="attribute_id" Type="int" Nullable="false" />
+    <Property Name="value" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="resource_attributesId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="resource_attributes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="attribute" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="resource_eav">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="resource_id" Type="int" Nullable="false" />
+    <Property Name="attribute_id" Type="int" Nullable="false" />
+    <Property Name="value_id" Type="int" Nullable="false" />
+    <Property Name="resource_attribute_valuesId" Type="int" Nullable="false" />
+    <Property Name="resourceId" Type="int" Nullable="false" />
+    <Property Name="resource_attributes_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="resources">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="fullpath" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="is_deleted" Type="bit" Nullable="false" />
+    <Property Name="created_at" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_resource_attribute_valuesresource_eav">
+    <End Role="resource_attribute_values" Type="Self.resource_attribute_values" Multiplicity="1" />
+    <End Role="resource_eav" Type="Self.resource_eav" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="resource_attribute_values">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="resource_eav">
+        <PropertyRef Name="resource_attribute_valuesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_resource_attributesresource_attribute_values">
+    <End Role="resource_attributes" Type="Self.resource_attributes" Multiplicity="1" />
+    <End Role="resource_attribute_values" Type="Self.resource_attribute_values" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="resource_attributes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="resource_attribute_values">
+        <PropertyRef Name="resource_attributesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_resource_eavresource_attributes">
+    <End Role="resource_attributes" Type="Self.resource_attributes" Multiplicity="1" />
+    <End Role="resource_eav" Type="Self.resource_eav" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="resource_attributes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="resource_eav">
+        <PropertyRef Name="resource_attributes_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_resourceresource_eav">
+    <End Role="resources" Type="Self.resources" Multiplicity="1" />
+    <End Role="resource_eav" Type="Self.resource_eav" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="resources">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="resource_eav">
+        <PropertyRef Name="resourceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="databaseEntitiesStoreContainer">
+    <EntitySet Name="resource_attribute_values" EntityType="Self.resource_attribute_values" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="resource_attributes" EntityType="Self.resource_attributes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="resource_eav" EntityType="Self.resource_eav" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="resources" EntityType="Self.resources" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_resource_attribute_valuesresource_eav" Association="Self.FK_resource_attribute_valuesresource_eav">
+      <End Role="resource_attribute_values" EntitySet="resource_attribute_values" />
+      <End Role="resource_eav" EntitySet="resource_eav" />
+    </AssociationSet>
+    <AssociationSet Name="FK_resource_attributesresource_attribute_values" Association="Self.FK_resource_attributesresource_attribute_values">
+      <End Role="resource_attributes" EntitySet="resource_attributes" />
+      <End Role="resource_attribute_values" EntitySet="resource_attribute_values" />
+    </AssociationSet>
+    <AssociationSet Name="FK_resource_eavresource_attributes" Association="Self.FK_resource_eavresource_attributes">
+      <End Role="resource_attributes" EntitySet="resource_attributes" />
+      <End Role="resource_eav" EntitySet="resource_eav" />
+    </AssociationSet>
+    <AssociationSet Name="FK_resourceresource_eav" Association="Self.FK_resourceresource_eav">
+      <End Role="resources" EntitySet="resources" />
+      <End Role="resource_eav" EntitySet="resource_eav" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Model" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Model" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8080/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfresource">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="resource" nillable="true" type="tns:resource" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfresource" nillable="true" type="tns:ArrayOfresource" />
+  <xs:complexType name="resource">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="created_at" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="fullpath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="is_deleted" type="xs:boolean" />
+      <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="resource_eav" nillable="true" type="tns:ArrayOfresource_eav" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="resource" nillable="true" type="tns:resource" />
+  <xs:complexType name="ArrayOfresource_eav">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="resource_eav" nillable="true" type="tns:resource_eav" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfresource_eav" nillable="true" type="tns:ArrayOfresource_eav" />
+  <xs:complexType name="resource_eav">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="attribute_id" type="xs:int" />
+      <xs:element minOccurs="0" name="resource" nillable="true" type="tns:resource" />
+      <xs:element minOccurs="0" name="resourceId" type="xs:int" />
+      <xs:element minOccurs="0" name="resource_attribute_values" nillable="true" type="tns:resource_attribute_values" />
+      <xs:element minOccurs="0" name="resource_attribute_valuesId" type="xs:int" />
+      <xs:element minOccurs="0" name="resource_attributes" nillable="true" type="tns:resource_attributes" />
+      <xs:element minOccurs="0" name="resource_attributes_Id" type="xs:int" />
+      <xs:element minOccurs="0" name="resource_id" type="xs:int" />
+      <xs:element minOccurs="0" name="value_id" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="resource_eav" nillable="true" type="tns:resource_eav" />
+  <xs:complexType name="resource_attribute_values">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="attribute_id" type="xs:int" />
+      <xs:element minOccurs="0" name="resource_attributes" nillable="true" type="tns:resource_attributes" />
+      <xs:element minOccurs="0" name="resource_attributesId" type="xs:int" />
+      <xs:element minOccurs="0" name="resource_eav" nillable="true" type="tns:ArrayOfresource_eav" />
+      <xs:element minOccurs="0" name="value" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="resource_attribute_values" nillable="true" type="tns:resource_attribute_values" />
+  <xs:complexType name="resource_attributes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="attribute" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="resource_attribute_values" nillable="true" type="tns:ArrayOfresource_attribute_values" />
+      <xs:element minOccurs="0" name="resource_eav" nillable="true" type="tns:ArrayOfresource_eav" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="resource_attributes" nillable="true" type="tns:resource_attributes" />
+  <xs:complexType name="ArrayOfresource_attribute_values">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="resource_attribute_values" nillable="true" type="tns:resource_attribute_values" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfresource_attribute_values" nillable="true" type="tns:ArrayOfresource_attribute_values" />
+</xs:schema>
