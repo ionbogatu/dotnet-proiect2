@@ -34,10 +34,10 @@ namespace GUI.WcfServiceReference {
         System.Threading.Tasks.Task deleteResourceAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/saveResources", ReplyAction="http://tempuri.org/IService/saveResourcesResponse")]
-        void saveResources(System.Collections.Generic.Dictionary<string, object>[] resources);
+        void saveResources(Model.SelectedEntity[] resources);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/saveResources", ReplyAction="http://tempuri.org/IService/saveResourcesResponse")]
-        System.Threading.Tasks.Task saveResourcesAsync(System.Collections.Generic.Dictionary<string, object>[] resources);
+        System.Threading.Tasks.Task saveResourcesAsync(Model.SelectedEntity[] resources);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -91,11 +91,11 @@ namespace GUI.WcfServiceReference {
             return base.Channel.deleteResourceAsync(id);
         }
         
-        public void saveResources(System.Collections.Generic.Dictionary<string, object>[] resources) {
+        public void saveResources(Model.SelectedEntity[] resources) {
             base.Channel.saveResources(resources);
         }
         
-        public System.Threading.Tasks.Task saveResourcesAsync(System.Collections.Generic.Dictionary<string, object>[] resources) {
+        public System.Threading.Tasks.Task saveResourcesAsync(Model.SelectedEntity[] resources) {
             return base.Channel.saveResourcesAsync(resources);
         }
     }

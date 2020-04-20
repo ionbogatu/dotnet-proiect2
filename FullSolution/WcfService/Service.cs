@@ -40,7 +40,7 @@ namespace WcfService
             resourceRepository.deleteResource(id);
         }
 
-        public void saveResources(List<Dictionary<string, object>> resources)
+        public void saveResources(List<SelectedEntity> resources)
         {
             resourceRepository.saveResources(resources);
         }

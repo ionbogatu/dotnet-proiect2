@@ -294,9 +294,29 @@ namespace GUI
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            var tmpSelectedEntities = selectedEntities.ToArray();
+            var tmpSelectedEntities = new List<SelectedEntity>();
 
-            client.saveResources(tmpSelectedEntities);
+            foreach (var selectedEntity in selectedEntities)
+            {
+                SelectedEntity tmpSelectedEntity = new SelectedEntity();
+
+                if (selectedEntity.ContainsKey("id")) {
+                    tmpSelectedEntity.id = Convert.ToInt32(selectedEntity["id"]);
+                }
+
+                tmpSelectedEntity.name = selectedEntity["name"].ToString();
+                tmpSelectedEntity.description = selectedEntity["description"].ToString();
+                tmpSelectedEntity.path = selectedEntity["path"].ToString();
+                tmpSelectedEntity.imagePath = selectedEntity["imagePath"].ToString();
+                tmpSelectedEntity.createdAt = (DateTime) selectedEntity["createdAt"];
+
+                tmpSelectedEntity.properties = (List<KeyValuePair<string, string>>) selectedEntity["properties"];
+
+                tmpSelectedEntities.Add(tmpSelectedEntity);
+            }
+
+            client.saveResources(tmpSelectedEntities.ToArray());
+
             navigation.SelectedIndex = 0;
 
             if (navigation.Tag != null)

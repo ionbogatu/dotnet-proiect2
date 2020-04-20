@@ -30,15 +30,15 @@ namespace API
             return resources;
         }
 
-        public void saveResources(List<Dictionary<string, object>> resources)
+        public void saveResources(List<SelectedEntity> resources)
         {
-            foreach (var resource in resources)
+            foreach (SelectedEntity resource in resources)
             {
                 resource res = new resource();
 
-                if (resource.ContainsKey("id") && resource["id"] != null)
+                if (resource.id != null)
                 {
-                    res = databaseEntities.resources.Find(Convert.ToInt32(resource["id"]));
+                    res = databaseEntities.resources.Find(Convert.ToInt32(resource.id));
                     databaseEntities.Entry(res).State = System.Data.Entity.EntityState.Modified;
 
                     databaseEntities.resource_eav.RemoveRange(res.resource_eav);
@@ -48,13 +48,13 @@ namespace API
                     databaseEntities.Entry(res).State = System.Data.Entity.EntityState.Added;
                 }
 
-                res.name = resource["name"].ToString();
-                res.description = resource["description"].ToString();
-                res.fullpath = resource["imagePath"].ToString();
+                res.name = resource.name;
+                res.description = resource.description;
+                res.fullpath = resource.imagePath;
                 res.is_deleted = false;
-                res.created_at = (DateTime)resource["createdAt"];
+                res.created_at = resource.createdAt;
 
-                List<resource_eav> resourceEavCollection = SaveEavAttributes(res, resource["properties"]);
+                List<resource_eav> resourceEavCollection = SaveEavAttributes(res, resource.properties);
 
                 res.resource_eav = resourceEavCollection;
             }

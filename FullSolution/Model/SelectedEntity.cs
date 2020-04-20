@@ -1,12 +1,14 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
 
-namespace WcfService
+namespace Model
 {
     [DataContract(IsReference = true)]
-    class SelectedEntity
+    public class SelectedEntity
     {
         [DataMember]
-        public int id;
+        public int? id;
         [DataMember]
         public string name;
         [DataMember]
@@ -16,8 +18,8 @@ namespace WcfService
         [DataMember]
         public string imagePath;
         [DataMember]
-        public System.DateTime createdAt;
+        public DateTime createdAt;
         [DataMember]
-        public System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<string, object>> properties;
+        public List<KeyValuePair<string, string>> properties;
     }
 }

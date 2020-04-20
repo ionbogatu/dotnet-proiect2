@@ -18,6 +18,6 @@ namespace WcfService
         void deleteResource(int id);
 
         [OperationContract]
-        void saveResources(List<Dictionary<string, object>> resources);
+        void saveResources(List<SelectedEntity> resources);
     }
 }
